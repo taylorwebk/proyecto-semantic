@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import {Card, Image, Icon, Dimmer, Loader, Container} from 'semantic-ui-react'
+import {Card, Dimmer, Loader, Container} from 'semantic-ui-react'
 import axios from 'axios'
+import LinkCard from './LinkCard'
 export default class ListaLinks extends Component {
   constructor() {
     super()
@@ -28,28 +29,7 @@ export default class ListaLinks extends Component {
     } else {
       contenido = links.map((link, i) => {
         return (
-          <Card centered key={i}>
-            <Image src='https://www.google.com/images/logo.png' />
-            <Card.Content>
-              <Card.Header>
-                HACER LUEGO
-              </Card.Header>
-              <Card.Meta>
-                <span className='date'>
-                  {`El ${link.fecha} a las ${link.hora}`}
-                </span>
-              </Card.Meta>
-              <Card.Description>
-                {link.dsc}
-              </Card.Description>
-            </Card.Content>
-            <Card.Content extra>
-              <a>
-                <Icon name='comment' />
-                {link.comentarios_count} comentario(s)
-              </a>
-            </Card.Content>
-          </Card>
+          <LinkCard key={i} link={link} />
         )
       })
     }
