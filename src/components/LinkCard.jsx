@@ -26,29 +26,30 @@ export default class LinkCard extends Component {
     })
   }
   render() {
-    const {link} = this.props
+    const {link, setId} = this.props
     const {urlimg} = this.state
     return (
       <Card centered>
         {urlimg.length>0?<Image src={urlimg} />:null}
-        <Card.Content>
+        <Card.Content
+          style={{wordWrap: 'break-word'}}
+        >
           <Card.Header>
-            HACER LUEGO
+            {link.dsc.toUpperCase()}
           </Card.Header>
           <Card.Meta>
             <span className='date'>
               {`El ${link.fecha} a las ${link.hora}`}
             </span>
           </Card.Meta>
-          <Card.Description
-            style={{wordWrap: 'break-word'}}
-          >
-            {link.dsc}<br />
+          <Card.Description>
             <a>{link.url}</a>
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
-          <a>
+          <a onClick={
+            () => { setId(link.id) }
+          }>
             <Icon name='comment' />
             {link.comentarios_count} comentario(s)
           </a>
